@@ -25,4 +25,8 @@ public interface AssociadoAPI {
     @GetMapping("/cpf/{cpf}")
     @ResponseStatus(HttpStatus.OK)
     AssociadoResponseDTO buscaPorCpf(@PathVariable String cpf);
+
+    @PatchMapping("/{idAssociado}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void alteraAssociado(@PathVariable UUID idAssociado, @RequestBody @Valid AssociadoRequestDTO associadoRequestDTO);
 }

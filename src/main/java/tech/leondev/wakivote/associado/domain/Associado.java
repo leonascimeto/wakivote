@@ -28,4 +28,9 @@ public class Associado {
         this.nome = associadoRequestDTO.getNome();
         this.cpf = associadoRequestDTO.getCpf();
     }
+
+    public void altera(AssociadoRequestDTO associadoRequestDTO) {
+        this.nome = associadoRequestDTO.getNome();
+        this.cpf = associadoRequestDTO.getCpf();
+    }
 }

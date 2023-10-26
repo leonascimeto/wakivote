@@ -1,0 +1,12 @@
+server:
+  servlet:
+    context-path: /wakivote/api
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/wakivote
+    username: admin
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update

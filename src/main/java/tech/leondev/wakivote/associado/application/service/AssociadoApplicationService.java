@@ -47,4 +47,13 @@ public class AssociadoApplicationService implements AssociadoService{
         log.info("[end] AssociadoApplicationService - buscaPorCpf");
         return new AssociadoResponseDTO(associado);
     }
+
+    @Override
+    public void altera(UUID idAssociado, AssociadoRequestDTO associadoRequestDTO) {
+        log.info("[start] AssociadoApplicationService - altera");
+        Associado associado = associadoRepository.buscaPorId(idAssociado);
+        associado.altera(associadoRequestDTO);
+        associadoRepository.salva(associado);
+        log.info("[end] AssociadoApplicationService - altera");
+    }
 }

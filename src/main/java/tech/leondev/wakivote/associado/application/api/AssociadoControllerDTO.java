@@ -36,4 +36,12 @@ public class AssociadoControllerDTO implements AssociadoAPI{
         log.info("[end] AssociadoControllerDTO - buscarPorId");
         return associado;
     }
+
+    @Override
+    public AssociadoResponseDTO buscaPorCpf(String cpf) {
+        log.info("[start] AssociadoControllerDTO - buscaPorCpf");
+        AssociadoResponseDTO associado = associadoService.buscaPorCpf(cpf);
+        log.info("[end] AssociadoControllerDTO - buscaPorCpf");
+        return associado;
+    }
 }

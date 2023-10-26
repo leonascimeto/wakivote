@@ -21,4 +21,8 @@ public interface AssociadoAPI {
     @GetMapping("/{idAssociado}")
     @ResponseStatus(HttpStatus.OK)
     AssociadoResponseDTO buscarPorId(@PathVariable UUID idAssociado);
+
+    @GetMapping("/cpf/{cpf}")
+    @ResponseStatus(HttpStatus.OK)
+    AssociadoResponseDTO buscaPorCpf(@PathVariable String cpf);
 }

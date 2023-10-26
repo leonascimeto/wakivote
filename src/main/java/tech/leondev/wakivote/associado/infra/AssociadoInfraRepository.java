@@ -39,4 +39,13 @@ public class AssociadoInfraRepository implements AssociadoRepository {
         log.info("[end] AssociadoInfraRepository - buscaPorId");
         return associado;
     }
+
+    @Override
+    public Associado buscaPorCpf(String cpf) {
+        log.info("[start] AssociadoInfraRepository - buscaPorCpf");
+        Associado associado = associadoSpringDataJPARepository.findByCpf(cpf)
+                .orElseThrow(() -> new RuntimeException("Associado não encontrado"));
+        log.info("[end] AssociadoInfraRepository - buscaPorCpf");
+        return associado;
+    }
 }

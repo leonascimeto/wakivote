@@ -11,4 +11,6 @@ public interface AssociadoRepository {
     List<Associado> lista();
 
     Associado buscaPorId(UUID idAssociado);
+
+    Associado buscaPorCpf(String cpf);
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import tech.leondev.wakivote.associado.application.service.AssociadoService;
 
 import java.util.List;
+import java.util.UUID;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -26,5 +27,13 @@ public class AssociadoControllerDTO implements AssociadoAPI{
         List<AssociadoResponseDTO> associados = associadoService.lista();
         log.info("[end] AssociadoControllerDTO - lista");
         return associados;
+    }
+
+    @Override
+    public AssociadoResponseDTO buscarPorId(UUID idAssociado) {
+        log.info("[start] AssociadoControllerDTO - buscarPorId");
+        AssociadoResponseDTO associado = associadoService.buscaPorId(idAssociado);
+        log.info("[end] AssociadoControllerDTO - buscarPorId");
+        return associado;
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("v1/associados")
@@ -16,4 +17,8 @@ public interface AssociadoAPI {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<AssociadoResponseDTO> lista();
+
+    @GetMapping("/{idAssociado}")
+    @ResponseStatus(HttpStatus.OK)
+    AssociadoResponseDTO buscarPorId(@PathVariable UUID idAssociado);
 }

@@ -7,6 +7,7 @@ import tech.leondev.wakivote.associado.application.repository.AssociadoRepositor
 import tech.leondev.wakivote.associado.domain.Associado;
 
 import java.util.List;
+import java.util.UUID;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -28,5 +29,14 @@ public class AssociadoInfraRepository implements AssociadoRepository {
         List<Associado> associados = associadoSpringDataJPARepository.findAll();
         log.info("[end] AssociadoInfraRepository - lista");
         return associados;
+    }
+
+    @Override
+    public Associado buscaPorId(UUID idAssociado) {
+        log.info("[start] AssociadoInfraRepository - buscaPorId");
+        Associado associado = associadoSpringDataJPARepository.findById(idAssociado)
+                        .orElseThrow(() -> new RuntimeException("Associado não encontrado"));
+        log.info("[end] AssociadoInfraRepository - buscaPorId");
+        return associado;
     }
 }

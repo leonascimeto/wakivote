@@ -8,6 +8,8 @@ import tech.leondev.wakivote.associado.application.api.AssociadoResponseDTO;
 import tech.leondev.wakivote.associado.application.repository.AssociadoRepository;
 import tech.leondev.wakivote.associado.domain.Associado;
 
+import java.util.List;
+
 @Log4j2
 @RequiredArgsConstructor
 @Service
@@ -19,5 +21,13 @@ public class AssociadoApplicationService implements AssociadoService{
         Associado associado = associadoRepository.salva(new Associado(associadoRequestDTO));
         log.info("[end] AssociadoApplicationService - salva");
         return new AssociadoResponseDTO(associado);
+    }
+
+    @Override
+    public List<AssociadoResponseDTO> lista() {
+        log.info("[start] AssociadoApplicationService - list");
+        List<Associado> associados = associadoRepository.lista();
+        log.info("[end] AssociadoApplicationService - list");
+        return AssociadoResponseDTO.converteListaAssociadoParaDTO(associados);
     }
 }

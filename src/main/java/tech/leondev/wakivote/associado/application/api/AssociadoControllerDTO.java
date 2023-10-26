@@ -51,4 +51,11 @@ public class AssociadoControllerDTO implements AssociadoAPI{
         associadoService.altera(idAssociado, associadoRequestDTO);
         log.info("[end] AssociadoControllerDTO - alteraAssociado");
     }
+
+    @Override
+    public void deletaAssociado(UUID idAssociado) {
+        log.info("[start] AssociadoControllerDTO - deletaAssociado");
+        associadoService.deleta(idAssociado);
+        log.info("[end] AssociadoControllerDTO - deletaAssociado");
+    }
 }

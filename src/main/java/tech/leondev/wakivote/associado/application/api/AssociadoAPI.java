@@ -29,4 +29,8 @@ public interface AssociadoAPI {
     @PatchMapping("/{idAssociado}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void alteraAssociado(@PathVariable UUID idAssociado, @RequestBody @Valid AssociadoRequestDTO associadoRequestDTO);
+
+    @DeleteMapping("/{idAssociado}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void deletaAssociado(@PathVariable UUID idAssociado);
 }

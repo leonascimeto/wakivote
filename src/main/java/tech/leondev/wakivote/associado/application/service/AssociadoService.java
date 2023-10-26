@@ -12,4 +12,6 @@ public interface AssociadoService {
     List<AssociadoResponseDTO> lista();
 
     AssociadoResponseDTO buscaPorId(UUID idAssociado);
+
+    AssociadoResponseDTO buscaPorCpf(String cpf);
 }

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import tech.leondev.wakivote.associado.application.api.AssociadoRequestDTO;
 
 import java.util.UUID;
 
@@ -22,4 +23,9 @@ public class Associado {
     @NotBlank
     @Column(unique = true)
     private String cpf;
+
+    public Associado(AssociadoRequestDTO associadoRequestDTO){
+        this.nome = associadoRequestDTO.getNome();
+        this.cpf = associadoRequestDTO.getCpf();
+    }
 }

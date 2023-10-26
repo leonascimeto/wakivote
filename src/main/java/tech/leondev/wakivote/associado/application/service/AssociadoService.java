@@ -16,4 +16,6 @@ public interface AssociadoService {
     AssociadoResponseDTO buscaPorCpf(String cpf);
 
     void altera(UUID idAssociado, AssociadoRequestDTO associadoRequestDTO);
+
+    void deleta(UUID idAssociado);
 }

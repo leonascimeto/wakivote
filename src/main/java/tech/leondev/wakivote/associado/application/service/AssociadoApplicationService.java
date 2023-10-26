@@ -56,4 +56,12 @@ public class AssociadoApplicationService implements AssociadoService{
         associadoRepository.salva(associado);
         log.info("[end] AssociadoApplicationService - altera");
     }
+
+    @Override
+    public void deleta(UUID idAssociado) {
+        log.info("[start] AssociadoApplicationService - deleta");
+        Associado associado = associadoRepository.buscaPorId(idAssociado);
+        associadoRepository.deleta(associado);
+        log.info("[end] AssociadoApplicationService - deleta");
+    }
 }

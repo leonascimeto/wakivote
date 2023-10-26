@@ -48,4 +48,11 @@ public class AssociadoInfraRepository implements AssociadoRepository {
         log.info("[end] AssociadoInfraRepository - buscaPorCpf");
         return associado;
     }
+
+    @Override
+    public void deleta(Associado associado) {
+        log.info("[start] AssociadoInfraRepository - deleta");
+        associadoSpringDataJPARepository.delete(associado);
+        log.info("[end] AssociadoInfraRepository - deleta");
+    }
 }

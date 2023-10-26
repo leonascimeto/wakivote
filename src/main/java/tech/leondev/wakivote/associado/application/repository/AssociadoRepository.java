@@ -13,4 +13,6 @@ public interface AssociadoRepository {
     Associado buscaPorId(UUID idAssociado);
 
     Associado buscaPorCpf(String cpf);
+
+    void deleta(Associado associado);
 }

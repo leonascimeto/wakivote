@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import tech.leondev.wakivote.pauta.application.api.PautaRequestDTO;
 
 import java.util.UUID;
 
@@ -20,4 +21,8 @@ public class Pauta {
     @NotBlank
     @Size(min = 6)
     private String descricao;
+
+    public Pauta(PautaRequestDTO pautaRequestDTO) {
+        this.descricao = pautaRequestDTO.getDescricao();
+    }
 }

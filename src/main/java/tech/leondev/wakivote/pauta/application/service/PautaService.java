@@ -1,5 +1,6 @@
 package tech.leondev.wakivote.pauta.application.service;
 
+import tech.leondev.wakivote.pauta.application.api.PautaRequestDTO;
 import tech.leondev.wakivote.pauta.application.api.PautaResponseDTO;
 import tech.leondev.wakivote.pauta.domain.Pauta;
 
@@ -12,4 +13,6 @@ public interface PautaService {
     List<PautaResponseDTO> lista();
 
     PautaResponseDTO buscaPorId(UUID idPauta);
+
+    void altera(UUID idPauta, PautaRequestDTO pautaRequestDTO);
 }

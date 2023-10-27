@@ -3,6 +3,7 @@ package tech.leondev.wakivote.pauta.application.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import tech.leondev.wakivote.pauta.application.api.PautaRequestDTO;
 import tech.leondev.wakivote.pauta.application.api.PautaResponseDTO;
 import tech.leondev.wakivote.pauta.application.repository.PautaRepository;
 import tech.leondev.wakivote.pauta.domain.Pauta;
@@ -38,5 +39,14 @@ public class PautaApplicationService implements PautaService{
         Pauta pauta = pautaRepository.buscaPorId(idPauta);
         log.info("[end] PautaApplicationService - buscaPorId");
         return new PautaResponseDTO(pauta);
+    }
+
+    @Override
+    public void altera(UUID idPauta, PautaRequestDTO pautaRequestDTO) {
+        log.info("[start] PautaApplicationService - altera");
+        Pauta pauta = pautaRepository.buscaPorId(idPauta);
+        pauta.altera(pautaRequestDTO);
+        pautaRepository.salva(pauta);
+        log.info("[end] PautaApplicationService - altera");
     }
 }

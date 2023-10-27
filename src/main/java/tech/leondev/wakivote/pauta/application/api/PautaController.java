@@ -38,4 +38,11 @@ public class PautaController implements PautaAPI{
         log.info("[end] PautaController - buscaPorId");
         return pauta;
     }
+
+    @Override
+    public void altera(UUID idPauta, PautaRequestDTO pautaRequestDTO) {
+        log.info("[start] PautaController - altera");
+        pautaService.altera(idPauta, pautaRequestDTO);
+        log.info("[end] PautaController - altera");
+    }
 }

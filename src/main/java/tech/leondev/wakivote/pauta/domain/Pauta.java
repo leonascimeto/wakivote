@@ -25,4 +25,8 @@ public class Pauta {
     public Pauta(PautaRequestDTO pautaRequestDTO) {
         this.descricao = pautaRequestDTO.getDescricao();
     }
+
+    public void altera(PautaRequestDTO pautaRequestDTO) {
+        this.descricao = pautaRequestDTO.getDescricao();
+    }
 }

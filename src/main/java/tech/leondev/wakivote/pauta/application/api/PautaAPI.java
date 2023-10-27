@@ -22,4 +22,8 @@ public interface PautaAPI {
     @GetMapping("/{idPauta}")
     @ResponseStatus(HttpStatus.OK)
     PautaResponseDTO buscaPorId(@PathVariable UUID idPauta);
+
+    @PatchMapping("/{idPauta}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void altera(@PathVariable UUID idPauta, @RequestBody @Valid PautaRequestDTO pautaRequestDTO);
 }

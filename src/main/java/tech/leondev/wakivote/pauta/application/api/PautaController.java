@@ -7,6 +7,7 @@ import tech.leondev.wakivote.pauta.application.service.PautaService;
 import tech.leondev.wakivote.pauta.domain.Pauta;
 
 import java.util.List;
+import java.util.UUID;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -28,5 +29,13 @@ public class PautaController implements PautaAPI{
         List<PautaResponseDTO> pautas = pautaService.lista();
         log.info("[end] PautaController - lista");
         return pautas;
+    }
+
+    @Override
+    public PautaResponseDTO buscaPorId(UUID idPauta) {
+        log.info("[start] PautaController - buscaPorId");
+        PautaResponseDTO pauta = pautaService.buscaPorId(idPauta);
+        log.info("[end] PautaController - buscaPorId");
+        return pauta;
     }
 }

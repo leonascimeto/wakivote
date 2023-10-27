@@ -26,4 +26,8 @@ public interface PautaAPI {
     @PatchMapping("/{idPauta}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void altera(@PathVariable UUID idPauta, @RequestBody @Valid PautaRequestDTO pautaRequestDTO);
+
+    @DeleteMapping("/{idPauta}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void deleta(@PathVariable UUID idPauta);
 }

@@ -45,4 +45,11 @@ public class PautaController implements PautaAPI{
         pautaService.altera(idPauta, pautaRequestDTO);
         log.info("[end] PautaController - altera");
     }
+
+    @Override
+    public void deleta(UUID idPauta) {
+        log.info("[start] PautaController - altera");
+        pautaService.deleta(idPauta);
+        log.info("[end] PautaController - altera");
+    }
 }

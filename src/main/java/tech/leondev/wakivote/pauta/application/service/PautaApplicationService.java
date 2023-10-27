@@ -7,6 +7,8 @@ import tech.leondev.wakivote.pauta.application.api.PautaResponseDTO;
 import tech.leondev.wakivote.pauta.application.repository.PautaRepository;
 import tech.leondev.wakivote.pauta.domain.Pauta;
 
+import java.util.List;
+
 @Log4j2
 @RequiredArgsConstructor
 @Service
@@ -19,5 +21,13 @@ public class PautaApplicationService implements PautaService{
         Pauta pautaSaved = pautaRepository.salva(pauta);
         log.info("[end] PautaApplicationService - salva");
         return new PautaResponseDTO(pautaSaved);
+    }
+
+    @Override
+    public List<PautaResponseDTO> lista() {
+        log.info("[start] PautaApplicationService - lista");
+        List<Pauta> pautas = pautaRepository.lista();
+        log.info("[end] PautaApplicationService - lista");
+        return PautaResponseDTO.convertePautasParaListaDTO(pautas);
     }
 }

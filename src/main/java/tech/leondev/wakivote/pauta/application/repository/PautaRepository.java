@@ -11,4 +11,6 @@ public interface PautaRepository {
     List<Pauta> lista();
 
     Pauta buscaPorId(UUID idPauta);
+
+    void deleta(Pauta pauta);
 }

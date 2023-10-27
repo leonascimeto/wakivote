@@ -38,4 +38,11 @@ public class PautaInfraRepository implements PautaRepository {
         log.info("[end] PautaInfraRepository - buscaPorId");
         return pauta;
     }
+
+    @Override
+    public void deleta(Pauta pauta) {
+        log.info("[start] PautaInfraRepository - deleta");
+        pautaSpringDataJPARepository.delete(pauta);
+        log.info("[end] PautaInfraRepository - deleta");
+    }
 }

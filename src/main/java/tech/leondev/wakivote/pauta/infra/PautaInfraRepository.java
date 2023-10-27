@@ -7,6 +7,7 @@ import tech.leondev.wakivote.pauta.application.repository.PautaRepository;
 import tech.leondev.wakivote.pauta.domain.Pauta;
 
 import java.util.List;
+import java.util.UUID;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -27,5 +28,14 @@ public class PautaInfraRepository implements PautaRepository {
         List<Pauta> pautas = pautaSpringDataJPARepository.findAll();
         log.info("[end] PautaInfraRepository - lista");
         return pautas;
+    }
+
+    @Override
+    public Pauta buscaPorId(UUID idPauta) {
+        log.info("[start] PautaInfraRepository - buscaPorId");
+        Pauta pauta = pautaSpringDataJPARepository.findById(idPauta)
+                        .orElseThrow(() -> new RuntimeException("Pauta não encontrada"));
+        log.info("[end] PautaInfraRepository - buscaPorId");
+        return pauta;
     }
 }

@@ -49,4 +49,12 @@ public class PautaApplicationService implements PautaService{
         pautaRepository.salva(pauta);
         log.info("[end] PautaApplicationService - altera");
     }
+
+    @Override
+    public void deleta(UUID idPauta) {
+        log.info("[start] PautaApplicationService - altera");
+        Pauta pauta = pautaRepository.buscaPorId(idPauta);
+        pautaRepository.deleta(pauta);
+        log.info("[start] PautaApplicationService - altera");
+    }
 }

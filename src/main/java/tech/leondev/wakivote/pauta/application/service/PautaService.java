@@ -15,4 +15,6 @@ public interface PautaService {
     PautaResponseDTO buscaPorId(UUID idPauta);
 
     void altera(UUID idPauta, PautaRequestDTO pautaRequestDTO);
+
+    void deleta(UUID idPauta);
 }

@@ -10,6 +10,8 @@ import tech.leondev.wakivote.sessao_votacao.application.api.SessaoVotacaoRespons
 import tech.leondev.wakivote.sessao_votacao.application.repository.SessaoVotacaoRepository;
 import tech.leondev.wakivote.sessao_votacao.domain.SessaoVotacao;
 
+import java.util.UUID;
+
 @Log4j2
 @RequiredArgsConstructor
 @Service
@@ -26,5 +28,13 @@ public class SessaoVotacaoApplicationService implements SessaoVotacaoService{
         SessaoVotacao sessaoVotacaoSalva = sessaoVotacaoRepository.abreSessao(sessaoVotacao);
         log.info("[end] SessaoVotacaoApplicationService - salva");
         return new SessaoVotacaoResponseDTO(sessaoVotacaoSalva);
+    }
+
+    @Override
+    public SessaoVotacaoResponseDTO buscaPorId(UUID idSessaoVotacao) {
+        log.info("[start] SessaoVotacaoApplicationService - buscaPorId");
+        SessaoVotacao sessaoVotacao = sessaoVotacaoRepository.buscaPorId(idSessaoVotacao);
+        log.info("[end] SessaoVotacaoApplicationService - buscaPorId");
+        return new SessaoVotacaoResponseDTO(sessaoVotacao);
     }
 }

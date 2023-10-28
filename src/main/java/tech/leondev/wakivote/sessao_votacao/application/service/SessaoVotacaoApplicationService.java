@@ -10,6 +10,7 @@ import tech.leondev.wakivote.sessao_votacao.application.api.SessaoVotacaoRespons
 import tech.leondev.wakivote.sessao_votacao.application.repository.SessaoVotacaoRepository;
 import tech.leondev.wakivote.sessao_votacao.domain.SessaoVotacao;
 
+import java.util.List;
 import java.util.UUID;
 
 @Log4j2
@@ -36,5 +37,13 @@ public class SessaoVotacaoApplicationService implements SessaoVotacaoService{
         SessaoVotacao sessaoVotacao = sessaoVotacaoRepository.buscaPorId(idSessaoVotacao);
         log.info("[end] SessaoVotacaoApplicationService - buscaPorId");
         return new SessaoVotacaoResponseDTO(sessaoVotacao);
+    }
+
+    @Override
+    public List<SessaoVotacaoResponseDTO> lista() {
+        log.info("[start] SessaoVotacaoApplicationService - lista");
+        List<SessaoVotacao> sessoes = sessaoVotacaoRepository.lista();
+        log.info("[end] SessaoVotacaoApplicationService - lista");
+        return SessaoVotacaoResponseDTO.convertListaSessoesParaDTO(sessoes);
     }
 }

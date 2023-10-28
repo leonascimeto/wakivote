@@ -21,4 +21,8 @@ public interface SessaoVotacaoAPI {
     @GetMapping("/{idSessaoVotacao}")
     @ResponseStatus(HttpStatus.OK)
     SessaoVotacaoResponseDTO buscaSessao(@PathVariable UUID idSessaoVotacao);
+
+    @DeleteMapping("/{idSessaoVotacao}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void deletaSessao(@PathVariable UUID idSessaoVotacao);
 }

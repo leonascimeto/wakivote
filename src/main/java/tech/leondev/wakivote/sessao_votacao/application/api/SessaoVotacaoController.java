@@ -31,6 +31,13 @@ public class SessaoVotacaoController implements SessaoVotacaoAPI{
     }
 
     @Override
+    public void deletaSessao(UUID idSessaoVotacao) {
+        log.info("[start] SessaoVotacaoController - deletaSessao");
+        sessaoVotacaoService.deleta(idSessaoVotacao);
+        log.info("[end] SessaoVotacaoController - deletaSessao");
+    }
+
+    @Override
     public List<SessaoVotacaoResponseDTO> listaSessao() {
         log.info("[start] SessaoVotacaoController - listaSessao");
         List<SessaoVotacaoResponseDTO> sessoes = sessaoVotacaoService.lista();

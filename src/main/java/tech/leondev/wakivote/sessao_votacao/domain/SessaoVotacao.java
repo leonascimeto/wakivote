@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
+import tech.leondev.wakivote.handler.ApiException;
 import tech.leondev.wakivote.pauta.domain.Pauta;
 import tech.leondev.wakivote.sessao_votacao.application.api.SessaoVotacaoRequestDTO;
 import tech.leondev.wakivote.voto.domain.Voto;
@@ -43,5 +45,11 @@ public class SessaoVotacao {
 
     public void adicionarPauta(Pauta pauta) {
         this.pauta = pauta;
+    }
+
+    public void validaHorarioSessaoParaVotar(){
+        LocalDateTime now = LocalDateTime.now();
+        if(now.isBefore(dataAbertura)) throw ApiException.build(HttpStatus.BAD_REQUEST, "A sessão de votação ainda não foi aberta");
+        if(now.isAfter(dataFechamento)) throw ApiException.build(HttpStatus.BAD_REQUEST, "A sessão de votação já foi encerrada");
     }
 }

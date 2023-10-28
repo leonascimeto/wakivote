@@ -21,14 +21,16 @@ public class VotoApllicationService implements VotoService{
     private final SessaoVotacaoRepository sessaoVotacaoRepository;
 
     @Override
-    public VotoResponseDTO salva(VotoRequestDTO votoRequestDTO) {
+    public VotoResponseDTO adicionaVoto(VotoRequestDTO votoRequestDTO) {
         log.info("[start] VotoApllicationService - salva");
         Associado associado = associadoRepository.buscaPorCpf(votoRequestDTO.getCpf());
         SessaoVotacao sessaoVotacao = sessaoVotacaoRepository.buscaPorId(votoRequestDTO.getIdSessaoVotacao());
         sessaoVotacao.validaHorarioSessaoParaVotar();
+        sessaoVotacao.validaAssociadoJaVotou(associado);
         Voto voto = new Voto(associado, sessaoVotacao, votoRequestDTO.getVoto());
-        Voto votoSalvo = votoRepository.salva(voto);
+        sessaoVotacao.adicionarVoto(voto);
+        sessaoVotacaoRepository.salva(sessaoVotacao);
         log.info("[end] VotoApllicationService - salva");
-        return new VotoResponseDTO(votoSalvo);
+        return new VotoResponseDTO(voto);
     }
 }

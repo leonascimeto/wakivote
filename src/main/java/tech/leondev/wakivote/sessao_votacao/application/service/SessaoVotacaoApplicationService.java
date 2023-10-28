@@ -26,7 +26,7 @@ public class SessaoVotacaoApplicationService implements SessaoVotacaoService{
         Pauta pauta = pautaRepository.buscaPorId(sessaoVotacaoRequestDTO.getIdPauta());
         SessaoVotacao sessaoVotacao = new SessaoVotacao(sessaoVotacaoRequestDTO);
         sessaoVotacao.adicionarPauta(pauta);
-        SessaoVotacao sessaoVotacaoSalva = sessaoVotacaoRepository.abreSessao(sessaoVotacao);
+        SessaoVotacao sessaoVotacaoSalva = sessaoVotacaoRepository.salva(sessaoVotacao);
         log.info("[end] SessaoVotacaoApplicationService - salva");
         return new SessaoVotacaoResponseDTO(sessaoVotacaoSalva);
     }

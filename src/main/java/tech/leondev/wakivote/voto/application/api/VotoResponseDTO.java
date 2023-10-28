@@ -10,13 +10,11 @@ import java.util.UUID;
 
 @Value
 public class VotoResponseDTO {
-    private UUID idVoto;
     private SessaoVotacaoResponseDTO sessao;
     private AssociadoResponseDTO associado;
     private VotoEnum voto;
 
     public VotoResponseDTO(Voto votoSalvo) {
-        this.idVoto = votoSalvo.getIdVoto();
         this.sessao = new SessaoVotacaoResponseDTO(votoSalvo.getSessaoVotacao());
         this.associado = new AssociadoResponseDTO(votoSalvo.getAssociado());
         this.voto = votoSalvo.getVoto();

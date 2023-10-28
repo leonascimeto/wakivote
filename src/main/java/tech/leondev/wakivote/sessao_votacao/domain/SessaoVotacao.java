@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
+import tech.leondev.wakivote.associado.domain.Associado;
 import tech.leondev.wakivote.handler.ApiException;
 import tech.leondev.wakivote.pauta.domain.Pauta;
 import tech.leondev.wakivote.sessao_votacao.application.api.SessaoVotacaoRequestDTO;
@@ -51,5 +52,16 @@ public class SessaoVotacao {
         LocalDateTime now = LocalDateTime.now();
         if(now.isBefore(dataAbertura)) throw ApiException.build(HttpStatus.BAD_REQUEST, "A sessão de votação ainda não foi aberta");
         if(now.isAfter(dataFechamento)) throw ApiException.build(HttpStatus.BAD_REQUEST, "A sessão de votação já foi encerrada");
+    }
+
+    public void adicionarVoto(Voto voto) {
+        votos.add(voto);
+    }
+
+    public void validaAssociadoJaVotou(Associado associado) {
+        boolean associadoJaVotou = votos.stream()
+                .anyMatch(voto -> voto.getAssociado().equals(associado));
+        if(associadoJaVotou)
+            throw ApiException.build(HttpStatus.BAD_REQUEST, "O associado já votou nesta sessão de votação.");
     }
 }

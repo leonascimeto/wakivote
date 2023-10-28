@@ -14,7 +14,7 @@ public class VotoController implements VotoAPI {
     @Override
     public VotoResponseDTO executaVoto(VotoRequestDTO votoRequestDTO) {
         log.info("[start] VotoController - executaVoto");
-        VotoResponseDTO voto = votoService.salva(votoRequestDTO);
+        VotoResponseDTO voto = votoService.adicionaVoto(votoRequestDTO);
         log.info("[end] VotoController - executaVoto");
         return voto;
     }

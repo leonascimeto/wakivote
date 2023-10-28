@@ -4,5 +4,5 @@ import tech.leondev.wakivote.voto.application.api.VotoRequestDTO;
 import tech.leondev.wakivote.voto.application.api.VotoResponseDTO;
 
 public interface VotoService {
-    VotoResponseDTO salva(VotoRequestDTO votoRequestDTO);
+    VotoResponseDTO adicionaVoto(VotoRequestDTO votoRequestDTO);
 }

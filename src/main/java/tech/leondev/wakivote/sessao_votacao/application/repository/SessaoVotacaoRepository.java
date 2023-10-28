@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface SessaoVotacaoRepository {
-    SessaoVotacao abreSessao(SessaoVotacao sessaoVotacaoSalva);
+    SessaoVotacao salva(SessaoVotacao sessaoVotacaoSalva);
 
     SessaoVotacao buscaPorId(UUID idSessaoVotacao);
 

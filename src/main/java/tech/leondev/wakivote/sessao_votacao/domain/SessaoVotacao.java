@@ -7,8 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import tech.leondev.wakivote.pauta.domain.Pauta;
 import tech.leondev.wakivote.sessao_votacao.application.api.SessaoVotacaoRequestDTO;
+import tech.leondev.wakivote.voto.domain.Voto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -30,6 +32,9 @@ public class SessaoVotacao {
     @ManyToOne
     @JoinColumn(name = "pauta_id", nullable = false)
     private Pauta pauta;
+
+    @OneToMany(mappedBy = "sessaoVotacao", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Voto> votos;
 
     public SessaoVotacao(SessaoVotacaoRequestDTO sessaoVotacaoRequestDTO) {
         this.dataAbertura = sessaoVotacaoRequestDTO.getDataAbertura();

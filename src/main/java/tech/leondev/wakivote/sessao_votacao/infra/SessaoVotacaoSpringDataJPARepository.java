@@ -5,5 +5,5 @@ import tech.leondev.wakivote.sessao_votacao.domain.SessaoVotacao;
 
 import java.util.UUID;
 
-public interface SessaoVtacaoSpringDataJPARepository extends JpaRepository<SessaoVotacao, UUID> {
+public interface SessaoVotacaoSpringDataJPARepository extends JpaRepository<SessaoVotacao, UUID> {
 }

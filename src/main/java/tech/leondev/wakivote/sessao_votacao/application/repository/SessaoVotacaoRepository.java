@@ -11,4 +11,6 @@ public interface SessaoVotacaoRepository {
     SessaoVotacao buscaPorId(UUID idSessaoVotacao);
 
     List<SessaoVotacao> lista();
+
+    void deleta(SessaoVotacao sessaoVotacao);
 }

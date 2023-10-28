@@ -13,12 +13,12 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Repository
 public class SessaoVotacaoInfraRepository implements SessaoVotacaoRepository {
-    private final SessaoVtacaoSpringDataJPARepository sessaoVtacaoSpringDataJPARepository;
+    private final SessaoVotacaoSpringDataJPARepository sessaoVotacaoSpringDataJPARepository;
 
     @Override
     public SessaoVotacao abreSessao(SessaoVotacao sessaoVotacaoSalva) {
         log.info("[start] SessaoVotacaoInfraRepository - salva");
-        SessaoVotacao sessaoVotacao = sessaoVtacaoSpringDataJPARepository.save(sessaoVotacaoSalva);
+        SessaoVotacao sessaoVotacao = sessaoVotacaoSpringDataJPARepository.save(sessaoVotacaoSalva);
         log.info("[end] SessaoVotacaoInfraRepository - salva");
         return sessaoVotacao;
     }
@@ -26,7 +26,7 @@ public class SessaoVotacaoInfraRepository implements SessaoVotacaoRepository {
     @Override
     public SessaoVotacao buscaPorId(UUID idSessaoVotacao) {
         log.info("[start] SessaoVotacaoInfraRepository - buscaPorId");
-        SessaoVotacao sessaoVotacao = sessaoVtacaoSpringDataJPARepository.findById(idSessaoVotacao)
+        SessaoVotacao sessaoVotacao = sessaoVotacaoSpringDataJPARepository.findById(idSessaoVotacao)
                         .orElseThrow(() -> new RuntimeException("Sessão de votação não encontrada"));
         log.info("[end] SessaoVotacaoInfraRepository - buscaPorId");
         return sessaoVotacao;
@@ -35,8 +35,15 @@ public class SessaoVotacaoInfraRepository implements SessaoVotacaoRepository {
     @Override
     public List<SessaoVotacao> lista() {
         log.info("[start] SessaoVotacaoInfraRepository - lista");
-        List<SessaoVotacao> sessoes = sessaoVtacaoSpringDataJPARepository.findAll();
+        List<SessaoVotacao> sessoes = sessaoVotacaoSpringDataJPARepository.findAll();
         log.info("[end] SessaoVotacaoInfraRepository - lista");
         return sessoes;
+    }
+
+    @Override
+    public void deleta(SessaoVotacao sessaoVotacao) {
+        log.info("[start] SessaoVotacaoInfraRepository - deleta");
+        sessaoVotacaoSpringDataJPARepository.delete(sessaoVotacao);
+        log.info("[end] SessaoVotacaoInfraRepository - deleta");
     }
 }

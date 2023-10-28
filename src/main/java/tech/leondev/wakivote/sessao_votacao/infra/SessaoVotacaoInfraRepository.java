@@ -18,7 +18,7 @@ public class SessaoVotacaoInfraRepository implements SessaoVotacaoRepository {
     private final SessaoVotacaoSpringDataJPARepository sessaoVotacaoSpringDataJPARepository;
 
     @Override
-    public SessaoVotacao abreSessao(SessaoVotacao sessaoVotacaoSalva) {
+    public SessaoVotacao salva(SessaoVotacao sessaoVotacaoSalva) {
         log.info("[start] SessaoVotacaoInfraRepository - salva");
         SessaoVotacao sessaoVotacao = sessaoVotacaoSpringDataJPARepository.save(sessaoVotacaoSalva);
         log.info("[end] SessaoVotacaoInfraRepository - salva");

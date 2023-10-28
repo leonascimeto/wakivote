@@ -1,12 +1,9 @@
-package tech.leondev.wakivote.voto.application.api;
+package tech.leondev.wakivote.sessao_votacao.application.api;
 
 import lombok.Value;
 import tech.leondev.wakivote.associado.application.api.AssociadoResponseDTO;
-import tech.leondev.wakivote.sessao_votacao.application.api.SessaoVotacaoResponseDTO;
-import tech.leondev.wakivote.voto.domain.Voto;
-import tech.leondev.wakivote.voto.domain.VotoEnum;
-
-import java.util.UUID;
+import tech.leondev.wakivote.sessao_votacao.domain.Voto;
+import tech.leondev.wakivote.sessao_votacao.domain.VotoEnum;
 
 @Value
 public class VotoResponseDTO {

@@ -4,12 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import tech.leondev.wakivote.pauta.application.api.PautaResponseDTO;
 import tech.leondev.wakivote.sessao_votacao.domain.SessaoVotacao;
-import tech.leondev.wakivote.voto.domain.VotoEnum;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 

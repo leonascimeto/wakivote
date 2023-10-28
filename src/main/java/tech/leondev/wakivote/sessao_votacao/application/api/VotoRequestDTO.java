@@ -1,9 +1,9 @@
-package tech.leondev.wakivote.voto.application.api;
+package tech.leondev.wakivote.sessao_votacao.application.api;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Value;
-import tech.leondev.wakivote.voto.domain.VotoEnum;
+import tech.leondev.wakivote.sessao_votacao.domain.VotoEnum;
 
 import java.util.UUID;
 

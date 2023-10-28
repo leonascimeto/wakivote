@@ -2,7 +2,9 @@ package tech.leondev.wakivote.pauta.infra;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+import tech.leondev.wakivote.handler.ApiException;
 import tech.leondev.wakivote.pauta.application.repository.PautaRepository;
 import tech.leondev.wakivote.pauta.domain.Pauta;
 
@@ -34,7 +36,7 @@ public class PautaInfraRepository implements PautaRepository {
     public Pauta buscaPorId(UUID idPauta) {
         log.info("[start] PautaInfraRepository - buscaPorId");
         Pauta pauta = pautaSpringDataJPARepository.findById(idPauta)
-                        .orElseThrow(() -> new RuntimeException("Pauta não encontrada"));
+                        .orElseThrow(() -> ApiException.build(HttpStatus.NOT_FOUND, "Pauta não encontrada"));
         log.info("[end] PautaInfraRepository - buscaPorId");
         return pauta;
     }

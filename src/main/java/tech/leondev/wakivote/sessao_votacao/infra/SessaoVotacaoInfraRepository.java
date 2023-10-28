@@ -2,7 +2,9 @@ package tech.leondev.wakivote.sessao_votacao.infra;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+import tech.leondev.wakivote.handler.ApiException;
 import tech.leondev.wakivote.sessao_votacao.application.repository.SessaoVotacaoRepository;
 import tech.leondev.wakivote.sessao_votacao.domain.SessaoVotacao;
 
@@ -27,7 +29,7 @@ public class SessaoVotacaoInfraRepository implements SessaoVotacaoRepository {
     public SessaoVotacao buscaPorId(UUID idSessaoVotacao) {
         log.info("[start] SessaoVotacaoInfraRepository - buscaPorId");
         SessaoVotacao sessaoVotacao = sessaoVotacaoSpringDataJPARepository.findById(idSessaoVotacao)
-                        .orElseThrow(() -> new RuntimeException("Sessão de votação não encontrada"));
+                        .orElseThrow(() -> ApiException.build(HttpStatus.NOT_FOUND, "Sessão de votação não encontrada"));
         log.info("[end] SessaoVotacaoInfraRepository - buscaPorId");
         return sessaoVotacao;
     }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import tech.leondev.wakivote.sessao_votacao.application.repository.SessaoVotacaoRepository;
 import tech.leondev.wakivote.sessao_votacao.domain.SessaoVotacao;
 
+import java.util.List;
 import java.util.UUID;
 
 @Log4j2
@@ -29,5 +30,13 @@ public class SessaoVotacaoInfraRepository implements SessaoVotacaoRepository {
                         .orElseThrow(() -> new RuntimeException("Sessão de votação não encontrada"));
         log.info("[end] SessaoVotacaoInfraRepository - buscaPorId");
         return sessaoVotacao;
+    }
+
+    @Override
+    public List<SessaoVotacao> lista() {
+        log.info("[start] SessaoVotacaoInfraRepository - lista");
+        List<SessaoVotacao> sessoes = sessaoVtacaoSpringDataJPARepository.findAll();
+        log.info("[end] SessaoVotacaoInfraRepository - lista");
+        return sessoes;
     }
 }

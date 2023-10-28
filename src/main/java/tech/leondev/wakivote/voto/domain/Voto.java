@@ -27,4 +27,10 @@ public class Voto {
     @ManyToOne
     @JoinColumn(name = "sessao_votacao_id", nullable = false)
     private SessaoVotacao sessaoVotacao;
+
+    public Voto(Associado associado, SessaoVotacao sessaoVotacao, VotoEnum voto) {
+        this.voto = voto;
+        this.associado = associado;
+        this.sessaoVotacao = sessaoVotacao;
+    }
 }

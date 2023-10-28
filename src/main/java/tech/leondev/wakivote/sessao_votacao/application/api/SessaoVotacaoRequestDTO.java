@@ -1,5 +1,6 @@
 package tech.leondev.wakivote.sessao_votacao.application.api;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,10 +11,8 @@ import java.util.UUID;
 
 @Value
 public class SessaoVotacaoRequestDTO {
-    @NotNull
-    private LocalDateTime dataAbertura;
-    @NotNull
-    private LocalDateTime dataFechamento;
+    @Nullable
+    private Long duracaoMinutos;
     @NotNull
     private UUID idPauta;
 }

@@ -40,8 +40,9 @@ public class SessaoVotacao {
     private List<Voto> votos;
 
     public SessaoVotacao(SessaoVotacaoRequestDTO sessaoVotacaoRequestDTO) {
-        this.dataAbertura = sessaoVotacaoRequestDTO.getDataAbertura();
-        this.dataFechamento = sessaoVotacaoRequestDTO.getDataFechamento();
+        this.dataAbertura = LocalDateTime.now();
+        long minutosParaAdicionar = sessaoVotacaoRequestDTO.getDuracaoMinutos() == null ? 1 : sessaoVotacaoRequestDTO.getDuracaoMinutos();
+        this.dataFechamento = this.dataAbertura.plusMinutes(minutosParaAdicionar);
     }
 
     public void adicionarPauta(Pauta pauta) {

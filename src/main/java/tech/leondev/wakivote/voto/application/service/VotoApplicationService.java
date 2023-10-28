@@ -9,14 +9,12 @@ import tech.leondev.wakivote.sessao_votacao.application.repository.SessaoVotacao
 import tech.leondev.wakivote.sessao_votacao.domain.SessaoVotacao;
 import tech.leondev.wakivote.voto.application.api.VotoRequestDTO;
 import tech.leondev.wakivote.voto.application.api.VotoResponseDTO;
-import tech.leondev.wakivote.voto.application.repository.VotoRepository;
 import tech.leondev.wakivote.voto.domain.Voto;
 
 @Log4j2
 @RequiredArgsConstructor
 @Service
-public class VotoApllicationService implements VotoService{
-    private final VotoRepository votoRepository;
+public class VotoApplicationService implements VotoService{
     private final AssociadoRepository associadoRepository;
     private final SessaoVotacaoRepository sessaoVotacaoRepository;
 

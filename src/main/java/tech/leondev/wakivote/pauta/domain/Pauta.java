@@ -7,7 +7,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import tech.leondev.wakivote.pauta.application.api.PautaRequestDTO;
+import tech.leondev.wakivote.sessao_votacao.domain.SessaoVotacao;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -21,6 +23,9 @@ public class Pauta {
     @NotBlank
     @Size(min = 6)
     private String descricao;
+
+    @OneToMany(mappedBy = "pauta", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SessaoVotacao> sessoesDeVotacao;
 
     public Pauta(PautaRequestDTO pautaRequestDTO) {
         this.descricao = pautaRequestDTO.getDescricao();

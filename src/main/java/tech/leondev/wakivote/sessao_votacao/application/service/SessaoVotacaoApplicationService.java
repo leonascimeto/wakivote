@@ -46,4 +46,12 @@ public class SessaoVotacaoApplicationService implements SessaoVotacaoService{
         log.info("[end] SessaoVotacaoApplicationService - lista");
         return SessaoVotacaoResponseDTO.convertListaSessoesParaDTO(sessoes);
     }
+
+    @Override
+    public void deleta(UUID idSessaoVotacao) {
+        log.info("[start] SessaoVotacaoApplicationService - deleta");
+        SessaoVotacao sessaoVotacao = sessaoVotacaoRepository.buscaPorId(idSessaoVotacao);
+        sessaoVotacaoRepository.deleta(sessaoVotacao);
+        log.info("[end] SessaoVotacaoApplicationService - deleta");
+    }
 }

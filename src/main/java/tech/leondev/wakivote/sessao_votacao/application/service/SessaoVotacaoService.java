@@ -11,4 +11,6 @@ public interface SessaoVotacaoService {
     SessaoVotacaoResponseDTO buscaPorId(UUID idSessaoVotacao);
 
     List<SessaoVotacaoResponseDTO> lista();
+
+    void deleta(UUID idSessaoVotacao);
 }

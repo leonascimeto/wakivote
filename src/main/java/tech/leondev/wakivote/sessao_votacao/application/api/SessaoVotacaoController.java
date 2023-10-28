@@ -23,9 +23,9 @@ public class SessaoVotacaoController implements SessaoVotacaoAPI{
     }
 
     @Override
-    public SessaoVotacaoResponseDTO buscaSessao(UUID idSessaoVotacao) {
+    public SessaoVotacaoDetalheResponseDTO buscaSessao(UUID idSessaoVotacao) {
         log.info("[start] SessaoVotacaoController - buscaSessaso");
-        SessaoVotacaoResponseDTO sessaoVotacao = sessaoVotacaoService.buscaPorId(idSessaoVotacao);
+        SessaoVotacaoDetalheResponseDTO sessaoVotacao = sessaoVotacaoService.buscaPorId(idSessaoVotacao);
         log.info("[end] SessaoVotacaoController - buscaSessaso");
         return sessaoVotacao;
     }

@@ -11,9 +11,12 @@ import tech.leondev.wakivote.handler.ApiException;
 import tech.leondev.wakivote.pauta.domain.Pauta;
 import tech.leondev.wakivote.sessao_votacao.application.api.SessaoVotacaoRequestDTO;
 import tech.leondev.wakivote.voto.domain.Voto;
+import tech.leondev.wakivote.voto.domain.VotoEnum;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Getter
@@ -64,5 +67,16 @@ public class SessaoVotacao {
                 .anyMatch(voto -> voto.getAssociado().equals(associado));
         if(associadoJaVotou)
             throw ApiException.build(HttpStatus.BAD_REQUEST, "O associado já votou nesta sessão de votação.");
+    }
+
+    public Map<VotoEnum, Long> apurarVotos(){
+        Map<VotoEnum, Long> resultado = new HashMap<>();
+        for(VotoEnum votoEnum: VotoEnum.values()){
+            long contagem = votos.stream()
+                    .filter(voto -> votoEnum.equals(voto.getVoto()))
+                    .count();
+            resultado.put(votoEnum, contagem);
+        }
+        return resultado;
     }
 }

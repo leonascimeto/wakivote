@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import tech.leondev.wakivote.pauta.application.repository.PautaRepository;
 import tech.leondev.wakivote.pauta.domain.Pauta;
+import tech.leondev.wakivote.sessao_votacao.application.api.SessaoVotacaoDetalheResponseDTO;
 import tech.leondev.wakivote.sessao_votacao.application.api.SessaoVotacaoRequestDTO;
 import tech.leondev.wakivote.sessao_votacao.application.api.SessaoVotacaoResponseDTO;
 import tech.leondev.wakivote.sessao_votacao.application.repository.SessaoVotacaoRepository;
@@ -32,11 +33,12 @@ public class SessaoVotacaoApplicationService implements SessaoVotacaoService{
     }
 
     @Override
-    public SessaoVotacaoResponseDTO buscaPorId(UUID idSessaoVotacao) {
+    public SessaoVotacaoDetalheResponseDTO buscaPorId(UUID idSessaoVotacao) {
         log.info("[start] SessaoVotacaoApplicationService - buscaPorId");
         SessaoVotacao sessaoVotacao = sessaoVotacaoRepository.buscaPorId(idSessaoVotacao);
         log.info("[end] SessaoVotacaoApplicationService - buscaPorId");
-        return new SessaoVotacaoResponseDTO(sessaoVotacao);
+
+        return new SessaoVotacaoDetalheResponseDTO(sessaoVotacao, sessaoVotacao.apurarVotos());
     }
 
     @Override

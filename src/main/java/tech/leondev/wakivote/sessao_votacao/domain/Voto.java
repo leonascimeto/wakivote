@@ -1,11 +1,10 @@
-package tech.leondev.wakivote.voto.domain;
+package tech.leondev.wakivote.sessao_votacao.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import tech.leondev.wakivote.associado.domain.Associado;
-import tech.leondev.wakivote.sessao_votacao.domain.SessaoVotacao;
 
 import java.util.UUID;
 

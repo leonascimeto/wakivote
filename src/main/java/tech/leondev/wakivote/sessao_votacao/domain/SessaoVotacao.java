@@ -10,8 +10,6 @@ import tech.leondev.wakivote.associado.domain.Associado;
 import tech.leondev.wakivote.handler.ApiException;
 import tech.leondev.wakivote.pauta.domain.Pauta;
 import tech.leondev.wakivote.sessao_votacao.application.api.SessaoVotacaoRequestDTO;
-import tech.leondev.wakivote.voto.domain.Voto;
-import tech.leondev.wakivote.voto.domain.VotoEnum;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -78,5 +76,10 @@ public class SessaoVotacao {
             resultado.put(votoEnum, contagem);
         }
         return resultado;
+    }
+
+    public void fechaSessao() {
+        if(LocalDateTime.now().isBefore(this.dataFechamento))
+            this.dataFechamento = LocalDateTime.now();
     }
 }

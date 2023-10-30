@@ -14,13 +14,21 @@ public interface SessaoVotacaoAPI {
     @ResponseStatus(HttpStatus.CREATED)
     SessaoVotacaoResponseDTO abreSessao(@RequestBody @Valid SessaoVotacaoRequestDTO sessaoVotacaoRequestDTO);
 
+    @PostMapping("/votos")
+    @ResponseStatus(HttpStatus.CREATED)
+    VotoResponseDTO adicionaVoto(@RequestBody @Valid VotoRequestDTO votoRequestDTO);
+
+    @GetMapping("{idSessaoVotacao}/resultado")
+    @ResponseStatus(HttpStatus.OK)
+    SessaoVotacaoResultadoResponseDTO apuraResultadoSessao(@PathVariable UUID idSessaoVotacao);
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<SessaoVotacaoResponseDTO> listaSessao();
 
     @GetMapping("/{idSessaoVotacao}")
     @ResponseStatus(HttpStatus.OK)
-    SessaoVotacaoDetalheResponseDTO buscaSessao(@PathVariable UUID idSessaoVotacao);
+    SessaoVotacaoResponseDTO buscaSessao(@PathVariable UUID idSessaoVotacao);
 
     @DeleteMapping("/{idSessaoVotacao}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

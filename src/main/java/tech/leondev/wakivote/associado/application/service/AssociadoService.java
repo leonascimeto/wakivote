@@ -18,4 +18,6 @@ public interface AssociadoService {
     void altera(UUID idAssociado, AssociadoRequestDTO associadoRequestDTO);
 
     void deleta(UUID idAssociado);
+
+    void validaAssociadoAptoVoto(String cpf);
 }

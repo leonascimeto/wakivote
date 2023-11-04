@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
+import tech.leondev.wakivote.associado.application.service.AssociadoService;
 import tech.leondev.wakivote.associado.domain.Associado;
 import tech.leondev.wakivote.handler.ApiException;
 import tech.leondev.wakivote.pauta.domain.Pauta;
@@ -60,7 +61,12 @@ public class SessaoVotacao {
         votos.add(voto);
     }
 
-    public void validaAssociadoJaVotou(Associado associado) {
+    public void validaAssociado(Associado associado, AssociadoService associadoService) {
+        associadoService.validaAssociadoAptoVoto(associado.getCpf());
+        this.validaAssociadoJaVotou(associado);
+    }
+
+    public void validaAssociadoJaVotou(Associado associado){
         boolean associadoJaVotou = votos.stream()
                 .anyMatch(voto -> voto.getAssociado().equals(associado));
         if(associadoJaVotou)

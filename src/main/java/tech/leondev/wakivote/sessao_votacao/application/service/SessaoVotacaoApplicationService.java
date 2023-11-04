@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import tech.leondev.wakivote.associado.application.repository.AssociadoRepository;
+import tech.leondev.wakivote.associado.application.service.AssociadoService;
 import tech.leondev.wakivote.associado.domain.Associado;
 import tech.leondev.wakivote.pauta.application.repository.PautaRepository;
 import tech.leondev.wakivote.pauta.domain.Pauta;
@@ -24,6 +25,7 @@ public class SessaoVotacaoApplicationService implements SessaoVotacaoService{
     private final SessaoVotacaoRepository sessaoVotacaoRepository;
     private final AssociadoRepository associadoRepository;
     private final PautaRepository pautaRepository;
+    private final AssociadoService associadoService;
 
     @Override
     public SessaoVotacaoResponseDTO abreSessao(SessaoVotacaoRequestDTO sessaoVotacaoRequestDTO) {
@@ -42,7 +44,7 @@ public class SessaoVotacaoApplicationService implements SessaoVotacaoService{
         Associado associado = associadoRepository.buscaPorCpf(votoRequestDTO.getCpf());
         SessaoVotacao sessaoVotacao = sessaoVotacaoRepository.buscaPorId(votoRequestDTO.getIdSessaoVotacao());
         sessaoVotacao.validaHorarioSessaoParaVotar();
-        sessaoVotacao.validaAssociadoJaVotou(associado);
+        sessaoVotacao.validaAssociado(associado, associadoService);
         Voto voto = new Voto(associado, sessaoVotacao, votoRequestDTO.getVoto());
         sessaoVotacao.adicionarVoto(voto);
         sessaoVotacaoRepository.salva(sessaoVotacao);

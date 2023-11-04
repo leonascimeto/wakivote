@@ -2,11 +2,15 @@ package tech.leondev.wakivote.associado.application.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import tech.leondev.wakivote.associado.application.api.AssociadoRequestDTO;
 import tech.leondev.wakivote.associado.application.api.AssociadoResponseDTO;
 import tech.leondev.wakivote.associado.application.repository.AssociadoRepository;
 import tech.leondev.wakivote.associado.domain.Associado;
+import tech.leondev.wakivote.associado.infra.client.ConsultaCpfResponse;
+import tech.leondev.wakivote.associado.infra.client.SerproClientFeign;
+import tech.leondev.wakivote.handler.ApiException;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,6 +20,8 @@ import java.util.UUID;
 @Service
 public class AssociadoApplicationService implements AssociadoService{
     private final AssociadoRepository associadoRepository;
+    private final SerproClientFeign serproClientFeign;
+
     @Override
     public AssociadoResponseDTO salva(AssociadoRequestDTO associadoRequestDTO) {
         log.info("[start] AssociadoApplicationService - salva");
@@ -64,4 +70,19 @@ public class AssociadoApplicationService implements AssociadoService{
         associadoRepository.deleta(associado);
         log.info("[end] AssociadoApplicationService - deleta");
     }
+
+    @Override
+    public void validaAssociadoAptoVoto(String cpf) {
+        log.info("[start] AssociadoApplicationService - validaAssociadoAptoVoto");
+        ConsultaCpfResponse consultaCpfResponse = serproClientFeign.consultaCpf(TOKEN, cpf);
+        valida(consultaCpfResponse);
+        log.info("[end] AssociadoApplicationService - validaAssociadoAptoVoto");
+    }
+
+    private void valida(ConsultaCpfResponse consultaCpfResponse) {
+        if(consultaCpfResponse.isInvalid()){
+            throw ApiException.build(HttpStatus.UNPROCESSABLE_ENTITY, "Cpf Inválido");
+        }
+    }
+    private static final String TOKEN = "Bearer 06aef429-a981-3ec5-a1f8-71d38d86481e";
 }

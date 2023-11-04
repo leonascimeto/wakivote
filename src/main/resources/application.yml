@@ -10,3 +10,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+logging:
+  level:
+    tech.leondev: ${LOG_LEVEL:DEBUG}

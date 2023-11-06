@@ -14,3 +14,7 @@ spring:
 logging:
   level:
     tech.leondev: ${LOG_LEVEL:DEBUG}
+
+springdoc:
+  swagger-ui:
+    path: /public/swagger

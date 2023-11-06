@@ -1,5 +1,6 @@
 package tech.leondev.wakivote.associado.application.api;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+@Tag(name = "Associados", description = "Recurso para gerenciamento das associados.")
 @RestController
 @RequestMapping("v1/associados")
 public interface AssociadoAPI {

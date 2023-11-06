@@ -11,51 +11,51 @@ import java.util.UUID;
 @Log4j2
 @RequiredArgsConstructor
 @RestController
-public class AssociadoControllerDTO implements AssociadoAPI{
+public class AssociadoController implements AssociadoAPI{
     private final AssociadoService associadoService;
     @Override
     public AssociadoResponseDTO salva(AssociadoRequestDTO associadoRequestDTO) {
-        log.info("[start] AssociadoControllerDTO - salva");
+        log.info("[start] AssociadoController - salva");
         AssociadoResponseDTO associadoResponseDTO = associadoService.salva(associadoRequestDTO);
-        log.info("[end] AssociadoControllerDTO - salva");
+        log.info("[end] AssociadoController - salva");
         return associadoResponseDTO;
     }
 
     @Override
     public List<AssociadoResponseDTO> lista() {
-        log.info("[start] AssociadoControllerDTO - lista");
+        log.info("[start] AssociadoController - lista");
         List<AssociadoResponseDTO> associados = associadoService.lista();
-        log.info("[end] AssociadoControllerDTO - lista");
+        log.info("[end] AssociadoController - lista");
         return associados;
     }
 
     @Override
     public AssociadoResponseDTO buscarPorId(UUID idAssociado) {
-        log.info("[start] AssociadoControllerDTO - buscarPorId");
+        log.info("[start] AssociadoController - buscarPorId");
         AssociadoResponseDTO associado = associadoService.buscaPorId(idAssociado);
-        log.info("[end] AssociadoControllerDTO - buscarPorId");
+        log.info("[end] AssociadoController - buscarPorId");
         return associado;
     }
 
     @Override
     public AssociadoResponseDTO buscaPorCpf(String cpf) {
-        log.info("[start] AssociadoControllerDTO - buscaPorCpf");
+        log.info("[start] AssociadoController - buscaPorCpf");
         AssociadoResponseDTO associado = associadoService.buscaPorCpf(cpf);
-        log.info("[end] AssociadoControllerDTO - buscaPorCpf");
+        log.info("[end] AssociadoController - buscaPorCpf");
         return associado;
     }
 
     @Override
     public void alteraAssociado(UUID idAssociado, AssociadoRequestDTO associadoRequestDTO) {
-        log.info("[start] AssociadoControllerDTO - alteraAssociado");
+        log.info("[start] AssociadoController - alteraAssociado");
         associadoService.altera(idAssociado, associadoRequestDTO);
-        log.info("[end] AssociadoControllerDTO - alteraAssociado");
+        log.info("[end] AssociadoController - alteraAssociado");
     }
 
     @Override
     public void deletaAssociado(UUID idAssociado) {
-        log.info("[start] AssociadoControllerDTO - deletaAssociado");
+        log.info("[start] AssociadoController - deletaAssociado");
         associadoService.deleta(idAssociado);
-        log.info("[end] AssociadoControllerDTO - deletaAssociado");
+        log.info("[end] AssociadoController - deletaAssociado");
     }
 }

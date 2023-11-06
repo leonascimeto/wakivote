@@ -1,10 +1,13 @@
-version: '3.9'
+version: '3'
 
 services:
-  database:
+
+  wakivote-db:
     image: postgres
-    container_name: wakivote_database
+    container_name: wakivote-db
     restart: always
+    networks:
+      - wakivote-nw
     ports:
       - 5432:5432
     environment:
@@ -14,6 +17,23 @@ services:
     volumes:
       - pgdata:/data/postgres
 
+  wakivote-app:
+    build: .
+    container_name: wakivote-app
+    depends_on:
+      - wakivote-db
+    networks:
+      - wakivote-nw
+    environment:
+      - DB_HOST=wakivote-db
+      - LOG_LEVEL=DEBUG
+    ports:
+      - 8080:8080
+
 volumes:
   pgdata:
     driver: local
+
+networks:
+  wakivote-nw:
+    driver: bridge

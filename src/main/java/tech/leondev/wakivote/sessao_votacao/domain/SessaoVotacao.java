@@ -39,7 +39,7 @@ public class SessaoVotacao {
     private Pauta pauta;
 
     @OneToMany(mappedBy = "sessaoVotacao", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Voto> votos;
+    private Map<String, Voto> votos;
 
     public SessaoVotacao(SessaoVotacaoRequestDTO sessaoVotacaoRequestDTO) {
         this.dataAbertura = LocalDateTime.now();
@@ -58,7 +58,7 @@ public class SessaoVotacao {
     }
 
     public void adicionarVoto(Voto voto) {
-        votos.add(voto);
+        votos.put(voto.getAssociado().getCpf(), voto);
     }
 
     public void validaAssociado(Associado associado, AssociadoService associadoService) {
@@ -67,8 +67,7 @@ public class SessaoVotacao {
     }
 
     public void validaAssociadoJaVotou(Associado associado){
-        boolean associadoJaVotou = votos.stream()
-                .anyMatch(voto -> voto.getAssociado().equals(associado));
+        boolean associadoJaVotou = votos.containsKey(associado.getCpf());
         if(associadoJaVotou)
             throw ApiException.build(HttpStatus.BAD_REQUEST, "O associado já votou nesta sessão de votação.");
     }
@@ -76,9 +75,7 @@ public class SessaoVotacao {
     public Map<VotoEnum, Long> apurarVotos(){
         Map<VotoEnum, Long> resultado = new HashMap<>();
         for(VotoEnum votoEnum: VotoEnum.values()){
-            long contagem = votos.stream()
-                    .filter(voto -> votoEnum.equals(voto.getVoto()))
-                    .count();
+            long contagem = votos.values().stream().filter(voto -> voto.getVoto().equals(votoEnum)).count();
             resultado.put(votoEnum, contagem);
         }
         return resultado;
